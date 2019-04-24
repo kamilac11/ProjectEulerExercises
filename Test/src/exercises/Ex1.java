@@ -36,8 +36,8 @@ public class Ex1 {
         } 
       //showing and sorting list, removing duplicates and returning sum of list elements
         System.out.println("This is list of multiples of 3 or 5 below 1000"+ "\n" + list2);
-        System.out.println("This is sorted list"+"\n"+doSort(list2));
-        System.out.println("This is list without duplicates"+ "\n" + removeDuplicate(doSort(list2)));
+        System.out.println("This is sorted list of "+list2.size()+ " elements"+ "\n"+doSort(list2));
+        System.out.println("This is list of "+ removeDuplicate(doSort(list2)).size()+ " elements without duplicates"+ "\n" + removeDuplicate(doSort(list2)));
         System.out.println("Sum of all the multiples of 3 or 5 below 1000 (without duplicates: "+ sumOfElements(removeDuplicate(doSort(list2))));
         
         
@@ -69,7 +69,7 @@ public class Ex1 {
         for(int i =0; i < list.size(); i++){
             for(int j=0; j < list.size() - 1 ; j++){
                 if(list.get(j) > list.get(j+1)){
-                    Integer temp = list.get(j);
+                    Integer temp = list.get(j+1);
                     list.set(j+1, list.get(j));
                     list.set(j, temp);
                     
@@ -81,14 +81,16 @@ public class Ex1 {
         
     }
     //https://stackoverflow.com/questions/42042660/remove-duplicates-in-arraylist-java
+    //https://www.geeksforgeeks.org/java-equals-compareto-equalsignorecase-and-compare/
     //modify this function - not working properly
     public static ArrayList<Integer> removeDuplicate(ArrayList<Integer> list){
-        for(int j = list.size(); j>0; j--){
-        for(int i = j-1; i >= 0; i--){
-            if(list.get(i) == list.get(i+1)){
-                list.remove(j);
+        for(int i = list.size() - 1; i>0; i--){
+        for(int j = i-1; j>=0 ; j--){
+            if(list.get(i).equals(list.get(j))){
+                //list.remove(j);
                 //list.set(i, list.get(i+1));
-                
+                list.remove(i);
+                break;
             }
         }
         }
@@ -96,4 +98,5 @@ public class Ex1 {
         return list;
     }
     }
+
     
